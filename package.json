@@ -1,0 +1,35 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "FEC project",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "react-dom": "^16.8.6",
+    "react": "^16.8.6",
+    "webpack-cli": "^3.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.35.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/index.js",
+    "seed": "node ./database/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fec3-galadriel/garrett-related-products.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fec3-galadriel/garrett-related-products/issues"
+  },
+  "homepage": "https://github.com/fec3-galadriel/garrett-related-products#readme"
+}
