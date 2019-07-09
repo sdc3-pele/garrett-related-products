@@ -1,16 +1,15 @@
-DROP DATABASE IF EXISTS related_products
+DROP DATABASE IF EXISTS related_products;
 
 CREATE DATABASE related_products;
 
 USE related_products;
 
 CREATE TABLE products (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(200),
   price VARCHAR(20),
   style_ids JSON,
-  PRIMARY KEY id auto_increment,
-  FOREIGN KEY style_ids
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE styles (
@@ -20,5 +19,5 @@ CREATE TABLE styles (
 );
 
 /*  To execute:
- *    mysql -u root < server/schema.sql
+ *    mysql -u root < database/schema.sql
  */

@@ -9,4 +9,15 @@ connection = mysql.createPool({
   database: 'related_products'
 });
 
+const getAllProducts = (callback) => {
+  const queryString = 'SELECT * FROM products';
+  connection.query(queryString, (err, res) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, err);
+    }
+  })
+};
+
 module.exports = {getAllProducts}
