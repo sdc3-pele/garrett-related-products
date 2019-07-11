@@ -17,7 +17,3 @@ CREATE TABLE styles (
   name VARCHAR(200),
   img_url VARCHAR(500)
 );
-
-/*  To execute:
- *    mysql -u root < database/schema.sql
- */

@@ -7,5 +7,5 @@ const clothingType = ['Short Sleeve', 'Jersey', 'Polo', 'Bra', 'Crop', 'Boyfrien
 module.exports = {
   firstDescriptor,
   secondDescriptor,
-  clothingType
+  clothingType,
 };
