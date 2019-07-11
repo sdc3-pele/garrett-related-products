@@ -16,7 +16,7 @@ const getAllProducts = (callback) => {
     if (err) {
       callback(err);
     } else {
-      callback(null, err);
+      callback(null, res);
     }
   });
 };
