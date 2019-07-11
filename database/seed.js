@@ -17,14 +17,22 @@ const getDescriptors = () => { // grab vocab words from vocab and capitalize the
   return `${first} ${second}`;
 };
 
+const generatePrice = () => {
+  return `${Math.floor(Math.random() * 200) + 20}.00`; // generates a random price in the range of $20 - $250
+};
+
 const generateProduct = () => { // puts it all together
   const productType = `${chooseRandomly(vocab.clothingType)}`;
-  return `${getDescriptors()} ${productType}`;
+  const name = `${getDescriptors()} ${productType}`;
+  const price = generatePrice();
+  return { name, price };
 };
 
 const seedDb = () => {
-  const queryString = 'INSERT INTO products (name) VALUES (?)';
-  connection.query(queryString, generateProduct(), (err, res) => {
+  const product = generateProduct();
+  const params = [ product.name, product.price];
+  const queryString = 'INSERT INTO products (name, price) VALUES (?, ?) ';
+  connection.query(queryString, params, (err, res) => {
     if (err) {
       console.log('error inserting: ', err);
     } else {
