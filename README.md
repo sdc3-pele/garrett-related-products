@@ -4,6 +4,11 @@ This is the **Related Products** component of team Galadriel's _Wawa Melon_ FEC 
 
 Note: _This document is currently a work in progress and instructions below are likely to change_.
 
+# Related Modules
+- [https://github.com/fec3-galadriel/mike-photo-carousel]
+- [https://github.com/fec3-galadriel/matt-item-summary]
+- [https://github.com/fec3-galadriel/garrett-related-products]
+
 # Usage
 To set up, run these from the root directory:
 - `npm install` to install dependencies
