@@ -1,11 +1,12 @@
 const mysql = require('mysql');
+const config = require('./config.js');
 
 const connection = mysql.createPool({
   connectionLimit: 100,
-  host: '127.0.0.1',
+  host: config.port,
   port: 3306,
-  user: 'root',
-  password: '',
+  user: config.user,
+  password: config.password,
   database: 'related_products',
 });
 
