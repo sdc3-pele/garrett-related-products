@@ -17,9 +17,8 @@ const getDescriptors = () => { // grab vocab words from vocab and capitalize the
   return `${first} ${second}`;
 };
 
-const generatePrice = () => {
-  return `${Math.floor(Math.random() * 200) + 20}.00`; // generates a random price in the range of $20 - $250
-};
+const generatePrice = () => `${Math.floor(Math.random() * 200) + 20}.00`; // generates a random price in the range of $20 - $250
+
 
 const generateProduct = () => { // puts it all together
   const productType = `${chooseRandomly(vocab.clothingType)}`;
