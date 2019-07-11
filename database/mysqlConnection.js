@@ -3,7 +3,7 @@ const config = require('./config.js');
 
 module.exports = mysql.createPool({
   connectionLimit: 100,
-  host: config.port,
+  host: 'localhost',
   port: 3306,
   user: config.user,
   password: config.password,
