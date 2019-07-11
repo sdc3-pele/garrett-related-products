@@ -7,7 +7,7 @@ const connection = mysql.createPool({
   port: 3306,
   user: 'root',
   password: '',
-  database: 'related_products'
+  database: 'related_products',
 });
 
 const chooseRandomly = (array) => {
@@ -17,7 +17,7 @@ const chooseRandomly = (array) => {
 
 const getDescriptors = () => {
   const capitalize = (word) => {
-    let arr = [...word];
+    const arr = [...word];
     arr[0] = arr[0].toUpperCase();
     return arr.join('');
   };
@@ -45,5 +45,5 @@ const seedDb = () => {
 let i = 0;
 while (i < 100) {
   seedDb();
-  i++;
-};
+  i += 1;
+}
