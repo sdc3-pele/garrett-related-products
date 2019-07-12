@@ -1,13 +1,4 @@
-var mysql = require('mysql');
-
-connection = mysql.createPool({
-  connectionLimit: 100,
-  host: '127.0.0.1',
-  port: 3306,
-  user: 'root',
-  password: '',
-  database: 'related_products'
-});
+const connection = require('./mysqlConnection.js');
 
 const getAllProducts = (callback) => {
   const queryString = 'SELECT * FROM products';
@@ -15,9 +6,9 @@ const getAllProducts = (callback) => {
     if (err) {
       callback(err);
     } else {
-      callback(null, err);
+      callback(null, res);
     }
-  })
+  });
 };
 
-module.exports = {getAllProducts}
+module.exports = { getAllProducts };
