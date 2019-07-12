@@ -8,6 +8,7 @@ CREATE TABLE products (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(200),
   price VARCHAR(20),
-  style_urls JSON,
+  styles JSON,
+  style_thumbnails JSON,
   PRIMARY KEY (id)
 );
