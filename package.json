@@ -2,12 +2,13 @@
   "name": "fec",
   "version": "1.0.0",
   "description": "FEC project",
-  "main": "webpack.config.js",
+  "private": true,
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
     "express": "^4.17.1",
     "mysql": "^2.17.1",
-    "react-dom": "^16.8.6",
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
@@ -25,10 +26,11 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "test": "jest",
+    "react:dev" : "webpack -d --watch",
+    "reset-db": "mysql -u root < database/schema.sql",
     "start": "nodemon ./server/index.js",
     "seed": "node ./database/seed.js",
-    "reset-db": "mysql -u root < database/schema.sql"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
