@@ -76,5 +76,5 @@ module.exports = {
   generatePrice,
   generateStyle,
   generateStyleThumbnail,
-  generateProduct
+  generateProduct,
 };
