@@ -69,3 +69,12 @@ while (i < 100) {
   seedDb();
   i += 1;
 }
+
+module.exports = {
+  chooseRandomly,
+  getDescriptors,
+  generatePrice,
+  generateStyle,
+  generateStyleThumbnail,
+  generateProduct
+};

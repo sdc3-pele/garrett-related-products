@@ -5,11 +5,11 @@ const app = express();
 
 app.use(express.static(`${__dirname}/../dist`));
 
-app.get('/', (req, res) => {
-  res.send('Got a request!');
+app.get('/api/:productId', (req, res) => {
+  res.send('Got a request for a product!');
 });
 
-app.get('/products', (req, res) => { // initial route, will be converted to dynamic route on a per product basis
+app.get('/api/products', (req, res) => { // initial route, will be converted to dynamic route on a per product basis
   db.getAllProducts((err, result) => {
     if (err) {
       res.status(400).send(err);
