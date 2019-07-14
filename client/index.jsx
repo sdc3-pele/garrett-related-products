@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 export default class Test extends React.Component {
 
   render() {
-    return 'hello';
+    return <div>hello</div>;
   }
 }
 
