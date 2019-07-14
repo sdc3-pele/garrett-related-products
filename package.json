@@ -43,5 +43,10 @@
   "bugs": {
     "url": "https://github.com/fec3-galadriel/garrett-related-products/issues"
   },
-  "homepage": "https://github.com/fec3-galadriel/garrett-related-products#readme"
+  "homepage": "https://github.com/fec3-galadriel/garrett-related-products#readme",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>client/setupTests.js"
+    ]
+  }
 }
