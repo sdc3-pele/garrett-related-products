@@ -17,7 +17,7 @@ const getDescriptors = () => { // grab vocab words from vocab and capitalize the
   return `${first} ${second}`;
 };
 
-const generatePrice = () => `${Math.floor(Math.random() * 200) + 20}.00`; // generates a random price in the range of $20 - $250
+const generatePrice = () => `${20 + Math.floor(Math.random() * 200)}.00`; // generates a random price in the range of $20 - $250
 
 const generateStyle = () => {
   const randomKey = Math.floor(Math.random() * 174); // there are 174 style images in the s3 bucket
