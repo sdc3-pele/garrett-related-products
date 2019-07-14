@@ -15,4 +15,6 @@ To set up, run these from the root directory:
 - `npm run reset-db` to set up the database and tables
 - `npm run seed` to seed the database with random data
 - `npm run start` to run the express server
+- `npm run react:dev` to generate the webpack bundle and watch for changes
 
+Then navigate to `http://127.0.0.1:3003` to see the related-products app.

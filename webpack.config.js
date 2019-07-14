@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, '/client/index.js'),
+  entry: path.join(__dirname, '/client/index.jsx'),
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
@@ -10,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js?x$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
