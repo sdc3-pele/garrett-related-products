@@ -12,9 +12,11 @@ export default class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    const pid = window.location.pathname.substring(1);
+    const pid = window.location.pathname.substring(4);
     for (let i = 0; i < 4; i += 1) {
-      this.getProduct(pid);
+      const currentPid = parseInt(pid, 10) + (i * 4);
+      console.log(currentPid);
+      this.getProduct(currentPid);
     }
   }
 
