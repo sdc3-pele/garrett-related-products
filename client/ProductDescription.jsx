@@ -1,5 +1,10 @@
 import React from 'react';
 
-const ProductDescription = props => <div>ProductDescription Here</div>;
+const ProductDescription = ({ name, price }) => (
+  <div>
+    <p>{name}</p>
+    <p>{price}</p>
+  </div>
+);
 
 export default ProductDescription;

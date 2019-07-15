@@ -13,11 +13,15 @@ export default class Product extends React.Component {
 
   render() {
     const { isHovered } = this.state;
+    const { product } = this.props;
+    const { name, price, styles} = product;
+    const jsonStyles = JSON.parse(styles);
+    const imageUrl = jsonStyles[0] || '';
     return (
       <div>
-        <ProductImage />
+        <ProductImage imageUrl={imageUrl} />
         {isHovered ? <StylePicker /> : ''}
-        <ProductDescription />
+        <ProductDescription name={name} price={price} />
       </div>
     );
   }
