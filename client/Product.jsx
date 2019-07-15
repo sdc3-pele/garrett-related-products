@@ -4,7 +4,7 @@ import ProductImage from './ProductImage.jsx';
 import StylePicker from './StylePicker.jsx';
 
 export default class Product extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       isHovered: false,
