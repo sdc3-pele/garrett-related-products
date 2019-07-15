@@ -5,10 +5,6 @@ const app = express();
 
 app.use('/:pid', express.static(`${__dirname}/../dist`));
 
-app.get('/api/:productId', (req, res) => {
-  res.send('Got a request for a product!');
-});
-
 app.get('/api/products', (req, res) => { // get all products
   db.getAllProducts((err, result) => {
     if (err) {
@@ -21,7 +17,7 @@ app.get('/api/products', (req, res) => { // get all products
 
 app.get('/api/:pid', (req, res) => {
   const { pid } = req.params;
-  db.getProduct((err, result) => {
+  db.getProduct(pid, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
