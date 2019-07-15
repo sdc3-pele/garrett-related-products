@@ -17,7 +17,7 @@ export default class RelatedProducts extends React.Component {
         <span>You may also like</span>
         <ProductContainer>
           {
-            [1, 2, 3, 4].map(id => <Product id={id} />)
+            [1, 2, 3, 4].map(id => <Product pid={id} />)
           }
         </ProductContainer>
       </div>

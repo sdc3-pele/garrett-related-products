@@ -1,5 +1,24 @@
 import React from 'react';
+import ProductDescription from './ProductDescription.jsx';
+import ProductImage from './ProductImage.jsx';
+import StylePicker from './StylePicker.jsx';
 
-const Product = () => <div>Product Goes Here</div>;
+export default class Product extends React.Component {
+  constructor() {
+    super(props);
+    this.state = {
+      isHovered: false,
+    };
+  }
 
-export default Product;
+  render() {
+    const { isHovered } = this.state;
+    return (
+      <div>
+        <ProductImage />
+        {isHovered ? <StylePicker /> : ''}
+        <ProductDescription />
+      </div>
+    );
+  }
+}
