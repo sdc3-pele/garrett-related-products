@@ -17,7 +17,7 @@ const getProduct = (pid, callback) => {
     if (err) {
       callback(err);
     } else {
-      callback(null, res);
+      callback(null, res[0]);
     }
   });
 };
