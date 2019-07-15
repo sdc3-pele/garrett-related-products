@@ -3,7 +3,7 @@ const db = require('../database/index.js');
 
 const app = express();
 
-app.use('/:pid', express.static(`${__dirname}/../dist`));
+app.use('/id/:pid', express.static(`${__dirname}/../dist`));
 
 app.get('/api/products', (req, res) => { // get all products
   db.getAllProducts((err, result) => {
