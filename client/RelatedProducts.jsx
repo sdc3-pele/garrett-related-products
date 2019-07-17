@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Product from './Product.jsx';
 
+const MainContainer = styled.div`
+  text-align: center;
+`;
+
+const AlignContainer = styled.div`
+  display: inline-block;
+`;
+
 const ProductsContainer = styled.div`
   font-family: Calibre,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   height: 689px;
@@ -11,6 +19,7 @@ const ProductsContainer = styled.div`
   grid-template-rows: 100 550;
   grid-gap: 40px 40px;
   background-color: snow;
+  padding: 0 50px 0 50px;
 `;
 
 const Header = styled.span`
@@ -41,7 +50,7 @@ export default class RelatedProducts extends React.Component {
   }
 
   getProduct(pid) {
-    fetch(`http://127.0.0.1:3003/api/${pid}`)
+    fetch(`/api/${pid}`)
       .then(response => response.json())
       .then((product) => {
         const { products } = this.state;
@@ -53,14 +62,16 @@ export default class RelatedProducts extends React.Component {
   render() {
     const { products } = this.state || [];
     return (
-      <div>
-        <ProductsContainer>
-          <Header>You may also like</Header>
-          {
-            products.map(product => <Product key={product.id} product={product} />)
-          }
-        </ProductsContainer>
-      </div>
+      <MainContainer>
+        <AlignContainer>
+          <ProductsContainer>
+            <Header>You may also like</Header>
+            {
+              products.map(product => <Product key={product.id} product={product} />)
+            }
+          </ProductsContainer>
+        </AlignContainer>
+      </MainContainer>
     );
   }
 }
