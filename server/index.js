@@ -3,18 +3,25 @@ const db = require('../database/index.js');
 
 const app = express();
 
-app.use(express.static(`${__dirname}/../dist`));
+app.use('/id/:pid', express.static(`${__dirname}/../dist`));
 
-app.get('/', (req, res) => {
-  res.send('Got a request!');
-});
-
-app.get('/products', (req, res) => { // initial route, will be converted to dynamic route on a per product basis
+app.get('/api/products', (req, res) => { // get all products
   db.getAllProducts((err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(201).send(result);
+      res.status(200).send(result);
+    }
+  });
+});
+
+app.get('/api/:pid', (req, res) => {
+  const { pid } = req.params;
+  db.getProduct(pid, (err, result) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(result);
     }
   });
 });

@@ -11,4 +11,15 @@ const getAllProducts = (callback) => {
   });
 };
 
-module.exports = { getAllProducts };
+const getProduct = (pid, callback) => {
+  const queryString = 'SELECT * FROM products WHERE id=?';
+  connection.query(queryString, pid, (err, res) => { // this code is beginning to repeat, should refactor
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, res[0]);
+    }
+  });
+};
+
+module.exports = { getAllProducts, getProduct };

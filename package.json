@@ -2,31 +2,41 @@
   "name": "fec",
   "version": "1.0.0",
   "description": "FEC project",
-  "main": "webpack.config.js",
+  "private": true,
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
     "express": "^4.17.1",
     "mysql": "^2.17.1",
-    "react-dom": "^16.8.6",
     "react": "^16.8.6",
-    "webpack-cli": "^3.3.5"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
-    "webpack": "^4.35.3"
+    "jest": "^24.8.0",
+    "jest-environment-enzyme": "^7.0.2",
+    "jest-enzyme": "^7.0.2",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "react:dev": "webpack -d --watch",
+    "reset-db": "mysql -u root < database/schema.sql",
     "start": "nodemon ./server/index.js",
     "seed": "node ./database/seed.js",
-    "reset-db": "mysql -u root < database/schema.sql"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -37,5 +47,12 @@
   "bugs": {
     "url": "https://github.com/fec3-galadriel/garrett-related-products/issues"
   },
-  "homepage": "https://github.com/fec3-galadriel/garrett-related-products#readme"
+  "homepage": "https://github.com/fec3-galadriel/garrett-related-products#readme",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>client/setupTests.js"
+    ],
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme"
+  }
 }
