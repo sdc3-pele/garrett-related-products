@@ -1,7 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductContainer from './ProductContainer.jsx';
+import styled from 'styled-components';
 import Product from './Product.jsx';
+
+const ProductsContainer = styled.div`
+  font-family: Calibre,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  height: 689px;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: 100 550;
+  grid-gap: 40px 40px;
+  background-color: snow;
+`;
+
+const Header = styled.span`
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 4;
+  justify-self: center;
+  align-self: end;
+  font-family: Calibre,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+`;
 
 export default class RelatedProducts extends React.Component {
   constructor() {
@@ -34,12 +54,12 @@ export default class RelatedProducts extends React.Component {
     const { products } = this.state || [];
     return (
       <div>
-        <span>You may also like</span>
-        <ProductContainer>
+        <ProductsContainer>
+          <Header>You may also like</Header>
           {
             products.map(product => <Product key={product.id} product={product} />)
           }
-        </ProductContainer>
+        </ProductsContainer>
       </div>
     );
   }
