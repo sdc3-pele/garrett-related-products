@@ -41,16 +41,17 @@ export default class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    const pid = window.location.pathname.substring(4);
+    const pid = window.location.pathname.substring(1, 3);
+    console.log(pid);
     for (let i = 0; i < 4; i += 1) {
       const currentPid = parseInt(pid, 10) + (i * 4);
-      console.log(currentPid);
       this.getProduct(currentPid);
     }
   }
 
   getProduct(pid) {
-    fetch(`/api/${pid}`)
+    console.log('pid: ', pid);
+    fetch(`/api/product/${pid}`)
       .then(response => response.json())
       .then((product) => {
         const { products } = this.state;
@@ -67,7 +68,7 @@ export default class RelatedProducts extends React.Component {
           <ProductsContainer>
             <Header>You may also like</Header>
             {
-              products.map(product => <Product key={product.id} product={product} />)
+              products.map(product => <Product key={`rp${product.id}`} product={product} />)
             }
           </ProductsContainer>
         </AlignContainer>
