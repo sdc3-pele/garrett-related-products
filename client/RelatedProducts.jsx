@@ -12,13 +12,13 @@ const AlignContainer = styled.div`
 `;
 
 const ProductsContainer = styled.div`
-  font-family: Calibre,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   height: 689px;
   display: grid;
+  position: relative;
   grid-template-columns: repeat(4, 300px);
   grid-template-rows: 100 550;
   grid-gap: 40px 40px;
-  background-color: snow;
+  background-color: rgb("250, 250, 250");
   padding: 0 50px 0 50px;
 `;
 
@@ -27,7 +27,6 @@ const Header = styled.span`
   grid-column: 1 / span 4;
   justify-self: center;
   align-self: end;
-  font-family: Calibre,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   font-size: 48px;
   font-weight: 600;
 `;
@@ -41,7 +40,7 @@ export default class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    const pid = window.location.pathname.substring(1, 3);
+    const pid = window.location.pathname.substring(1);
     console.log(pid);
     for (let i = 0; i < 4; i += 1) {
       const currentPid = parseInt(pid, 10) + (i * 4);
