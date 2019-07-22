@@ -33,7 +33,7 @@ const generateProduct = () => { // puts it all together
   const productType = `${chooseRandomly(vocab.clothingType)}`;
   const name = `${getDescriptors()} ${productType}`;
   const price = generatePrice();
-  const numStyles = Math.floor(Math.random() * 10);
+  const numStyles = Math.ceil(Math.random() * 10);
   let styles = [];
   let styleThumbnails = [];
   for (let i = 0; i < numStyles; i += 1) {
