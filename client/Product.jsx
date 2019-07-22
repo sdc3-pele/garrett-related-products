@@ -17,26 +17,34 @@ const ProductImage = styled.div`
 
 const StylePicker = styled.div`
   width: 300px;
-  height: 50px;
+  height: 70px;
   z-index: 10;
   background: white;
   position: absolute;
   bottom: 0;
 `;
 
-const swatchesContainer = styled.div`
+const SwatchesContainer = styled.div`
   height: 35px;
   width: 255px;
-  display: inline-block;
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-rows: [swatches] 1fr;
+  grid-template-columns: [swatch0] 57.5px [swatch1] 57.5px [swatch2] 57.5px [swatch3] 57.5px;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  overflow: hidden;
+  top: 15%;
+  align: left;
 `;
 
-const swatch = styled.div`
+const Swatch = styled.div`
+  grid-row: swatches;
+  grid-column: swatch${props => props.index};
   height: 28px;
-  widght: 57.5px;
-  background: url(${JSON.parse(this.props.style_thumbnails)})
+  width: 57.5px;
+  background: url("${props => props.url}");
+  margin: 10px;
 `;
 
 const ProductDescription = styled.div`
@@ -77,9 +85,10 @@ export default class Product extends React.Component {
               isHovered
                 ? (
                   <StylePicker>
-                    <swatchesContainer>
-                      {jsonThumbnails.map(thumbnail => <img alt="pick a style" src={thumbnail} />)}
-                    </swatchesContainer>
+                    <SwatchesContainer>
+                      {jsonThumbnails
+                        .map((thumbnail, index) => <Swatch url={jsonThumbnails[index]} index={index} />)}
+                    </SwatchesContainer>
                   </StylePicker>
                 )
                 : ''
