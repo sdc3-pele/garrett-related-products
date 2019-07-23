@@ -78,9 +78,9 @@ export default class Product extends React.Component {
     };
   }
 
-  handleStyleHover(index) {
+  handleStyleHover(index, productIndex) {
     const { selectStyle } = this.props;
-    selectStyle(index);
+    selectStyle(index, productIndex);
   }
 
   handleMouseOver() {
@@ -93,7 +93,7 @@ export default class Product extends React.Component {
 
   render() {
     const { isHovered } = this.state;
-    const { product } = this.props;
+    const { product, productIndex } = this.props;
     const {
       name,
       price,
@@ -118,7 +118,7 @@ export default class Product extends React.Component {
                   <StylePicker>
                     <SwatchesContainer>
                       {jsonThumbnails.map((thumbnail, index) => (
-                        <div onMouseOver={() => this.handleStyleHover(index)} onFocus={() => this.handleStyleHover(index)}>
+                        <div onMouseOver={() => this.handleStyleHover(index, productIndex)} onFocus={() => this.handleStyleHover(index, productIndex)}>
                           <Swatch
                             url={jsonThumbnails[index]}
                             index={index}
