@@ -10,20 +10,64 @@ const ProductContainer = styled.div`
 `;
 
 const ProductImage = styled.div`
+  position: relative;
   height: auto;
   width: 300px;
 `;
 
 const StylePicker = styled.div`
   width: 300px;
-  height: 60px;
+  height: 70px;
   z-index: 10;
   background: white;
-  position: fixed;
+  position: absolute;
+  overflow: hidden;
+  align-self: center;
+  bottom: 0;
+`;
+
+const SwatchesContainer = styled.div`
+  height: 35px;
+  width: 255px;
+  display: grid;
+  grid-column-gap: 0.9rem;
+  grid-row-gap: 1rem;
+  grid-template-rows: [swatches] 1fr;
+  grid-template-columns: 1fr [swatch0] 57.5px [swatch1] 57.5px [swatch2] 57.5px [swatch3] 57.5px 1fr;
+  position: absolute;
+  margin-left: 15px;
+  top: 15%;
+  align: left;
+`;
+
+const Swatch = styled.div`
+  grid-row: swatches;
+  grid-column: swatch${props => props.index};
+  height: 28px;
+  width: 57.5px;
+  background: url("${props => props.url}");
+  margin: 0px;
+  margin-top: 8px;
+  outline: ${props => props.selectedStyle === props.index ? 'solid 0.5px black' : 'none'};
+  outline-offset: 2px;
 `;
 
 const ProductDescription = styled.div`
+  position: relative;
   text-align: left;
+`;
+
+const ProductName = styled.div`
+  position: relative;
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+`;
+
+const ProductCurrency = styled.span`
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 75%;
+  letter-spacing: 0.1rem;
 `;
 
 export default class Product extends React.Component {
@@ -32,6 +76,11 @@ export default class Product extends React.Component {
     this.state = {
       isHovered: false,
     };
+  }
+
+  handleStyleHover(index) {
+    const { selectStyle } = this.props;
+    selectStyle(index);
   }
 
   handleMouseOver() {
@@ -45,28 +94,58 @@ export default class Product extends React.Component {
   render() {
     const { isHovered } = this.state;
     const { product } = this.props;
-    const { name, price, styles } = product;
+    const {
+      name,
+      price,
+      selectedStyle,
+      styles,
+      style_thumbnails,
+    } = product;
+    const jsonThumbnails = JSON.parse(style_thumbnails);
     const jsonStyles = JSON.parse(styles);
-    const imageUrl = jsonStyles[0] || '';
+    const imageUrl = jsonStyles[selectedStyle] || '';
     return (
-      <ProductContainer>
-        <ProductImage>
-          <div>{isHovered ? <StylePicker /> : ''}</div>
-          <img
-            alt="Related Product"
-            src={imageUrl}
-            onMouseOver={() => this.handleMouseOver()}
-            onMouseOut={() => this.handleMouseOut()}
-          />
-        </ProductImage>
-
-        <ProductDescription>
-          <div>{name}</div>
-          <div>
-            {`$${price} USD`}
-          </div>
-        </ProductDescription>
-      </ProductContainer>
+      <div
+        onMouseOver={() => this.handleMouseOver()}
+        onMouseLeave={() => this.handleMouseOut()}
+        onFocus={() => this.handleMouseOver()}
+      >
+        <ProductContainer>
+          <ProductImage>
+            {
+              isHovered
+                ? (
+                  <StylePicker>
+                    <SwatchesContainer>
+                      {jsonThumbnails.map((thumbnail, index) => (
+                        <div onMouseOver={() => this.handleStyleHover(index)} onFocus={() => this.handleStyleHover(index)}>
+                          <Swatch
+                            url={jsonThumbnails[index]}
+                            index={index}
+                            selectedStyle={selectedStyle}
+                          />
+                        </div>
+                      ))}
+                    </SwatchesContainer>
+                  </StylePicker>
+                )
+                : ''
+            }
+            <img
+              alt="Related Product"
+              src={imageUrl}
+              style={{ width: '300px' }}
+            />
+          </ProductImage>
+          <ProductDescription>
+            <ProductName>{name}</ProductName>
+            <div>
+              {`$${price} `}
+              <ProductCurrency>USD</ProductCurrency>
+            </div>
+          </ProductDescription>
+        </ProductContainer>
+      </div>
     );
   }
 }
