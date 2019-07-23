@@ -37,6 +37,7 @@ export default class RelatedProducts extends React.Component {
     this.state = {
       products: [],
     };
+    this.selectStyle = this.selectStyle.bind(this);
   }
 
   componentDidMount() {
@@ -49,14 +50,21 @@ export default class RelatedProducts extends React.Component {
   }
 
   getProduct(pid) {
-    console.log('pid: ', pid);
     fetch(`/api/product/${pid}`)
       .then(response => response.json())
       .then((product) => {
+        console.log('product: ', product);
         const { products } = this.state;
+        product.selectedStyle = 0;
         products.push(product);
         this.setState({ products });
       });
+  }
+
+  selectStyle(index) {
+    const { products } = this.state;
+    products.selectedStyle = index;
+    this.setState({ product });
   }
 
   render() {
@@ -67,7 +75,7 @@ export default class RelatedProducts extends React.Component {
           <ProductsContainer>
             <Header>You may also like</Header>
             {
-              products.map(product => <Product key={`rp${product.id}`} product={product} />)
+              products.map(product => <Product key={`rp${product.id}`} product={product} selectStyle={this.selectStyle} />)
             }
           </ProductsContainer>
         </AlignContainer>
