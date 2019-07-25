@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../database/index.js');
+const postgresDB = require('../database/postgreSQL.js');
 
 const app = express();
 
@@ -58,7 +59,7 @@ app.put('/api/product/:pid', (req, res) => {
 
     // res with 500
 });
-
+1
 app.listen('3003', () => {
   console.log('listening on port 3003!');
 });
