@@ -18,3 +18,11 @@ To set up, run these from the root directory:
 - `npm run react:dev` to generate the webpack bundle and watch for changes
 
 Then navigate to `http://127.0.0.1:3003/1` to see the related-products app.
+
+# API Endpoints
+
+| HTTP METHOD      | POST               | GET                 | PUT            | DELETE         |
+| ---------------- | ---------------    | ------------------- | -------------- | -------------- |
+| CRUD             | CREATE             | READ                | UPDATE         | DELETE         |
+| /api/product     | create new product | n/a                 | n/a            |   n/a          |
+| /api/product/:id | Error              | responds w/ product | update product | delete product |
