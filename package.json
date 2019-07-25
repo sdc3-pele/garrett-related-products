@@ -37,7 +37,9 @@
     "react:dev": "webpack -d --watch",
     "reset-db": "mysql -u root < database/schema.sql",
     "start": "nodemon ./server/index.js",
-    "seed": "node ./database/seed.js",
+    "seed:mysql": "node ./database/seedMysql.js",
+    "seed:cassandra": "node ./database/seedCassandra.js",
+    "seed:postgress": "node ./database/seedPostgres.js",
     "test": "jest"
   },
   "repository": {
