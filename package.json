@@ -9,6 +9,7 @@
     "mysql": "^2.17.1",
     "nodemon": "^1.19.1",
     "pg": "^7.11.0",
+    "pg-format": "^1.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
@@ -36,10 +37,11 @@
     "build": "webpack --config webpack.config.js",
     "react:dev": "webpack -d --watch",
     "reset-db": "mysql -u root < database/schema.sql",
+    "reset-postgres": "psql postgres < database/schema.sql",
     "start": "nodemon ./server/index.js",
     "seed:mysql": "node ./database/mysql/seedMysql.js",
     "seed:cassandra": "node ./database/cassandra/seedCassandra.js",
-    "seed:postgress": "node ./database/postgres/seedPostgres.js",
+    "seed:postgres": "node ./database/postgres/seedPostgres.js",
     "test": "jest"
   },
   "repository": {
