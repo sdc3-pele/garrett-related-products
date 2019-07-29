@@ -49,15 +49,6 @@ const generateProduct = () => { // puts it all together
   };
 };
 
-// seed with 100 products
-const loadAll = (dbFunc) => {
-  let i = 0;
-  while (i < 100) {
-    dbFunc();
-    i += 1;
-  }
-};
-
 module.exports = {
   chooseRandomly,
   getDescriptors,
@@ -65,5 +56,4 @@ module.exports = {
   generateStyle,
   generateStyleThumbnail,
   generateProduct,
-  loadAll,
 };
