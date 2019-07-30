@@ -1,6 +1,7 @@
 const express = require('express');
-const db = require('../database/index.js');
-const postgresDB = require('../database/postgreSQL.js');
+const db = require('../database/mysql/index.js');
+const postgresDB = require('../database/postgres/index.js');
+const client = require('../database/postgres/postgresConnection.js');
 
 const app = express();
 
@@ -18,13 +19,29 @@ app.get('/api/products', (req, res) => { // get all products
 
 app.get('/api/product/:pid', (req, res) => {
   const { pid } = req.params;
-  db.getProduct(pid, (err, result) => {
+
+  // /* POSTGRES */
+  const query = `SELECT * FROM products WHERE id = ${pid}`;
+  client.client.query(query, (err, result) => {
     if (err) {
-      res.status(400).send(err);
-    } else {
-      res.status(200).send(result);
+      console.log(`Error retrieving prorduct ${pid}`);
+      res.status(500);
     }
+    const data = Object.assign({}, result.rows[0]);
+    data.styles = JSON.stringify(data.styles);
+    data.style_thumbnails = JSON.stringify(data.style_thumbnails);
+    res.send(data);
   });
+
+  /* MYSQL */
+  // db.getProduct(pid, (err, result) => {
+  //   if (err) {
+  //     // res.status(400).send(err);
+  //   } else {
+  //     console.log('M: RESULT: ', result)
+  //     res.status(200).send(result);
+  //   }
+  // });
 });
 
 // build post route
@@ -59,7 +76,7 @@ app.put('/api/product/:pid', (req, res) => {
 
     // res with 500
 });
-1
+
 app.listen('3003', () => {
   console.log('listening on port 3003!');
 });
