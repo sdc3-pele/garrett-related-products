@@ -8,11 +8,10 @@ const client = new cassandra.Client({
 
 client.connect((err) => {
   if (err) {
-    console.log('NOT CONNECTED TO CASSY', err);
+    console.log('failed to connect to cassandra: ', err);
   } else {
     console.log('connected to Cassandra');
   }
-
 });
 
 module.exports = { client };
