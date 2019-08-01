@@ -5,7 +5,6 @@ const client = new cassandra.Client({
   localDataCenter: 'datacenter1',
 });
 
-
 client.connect((err) => {
   if (err) {
     console.log('failed to connect to cassandra: ', err);
