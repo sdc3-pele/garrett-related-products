@@ -14,7 +14,7 @@ const seedPostgres = async () => {
 
   await client.query(tableQueryString, (err) => {
     if (err) {
-      console.log('ERRROR', err);
+      console.log('ERROR', err);
     }
   });
 
