@@ -1,3 +1,4 @@
+const nr = require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/mysql/index.js');
@@ -37,8 +38,18 @@ app.get('/api/product/:pid', (req, res) => {
       res.status(500);
     }
     const data = Object.assign({}, result.rows[0]);
+
+    data.styles = data.styles.map((url) => {
+      return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/styles/_(${url}).jfif`;
+    });
+
+    data.style_thumbnails = data.styles.map((url) => {
+      return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/style-thumbs/_(${url}).jfif`;
+    });
+
     data.styles = JSON.stringify(data.styles);
     data.style_thumbnails = JSON.stringify(data.style_thumbnails);
+
     res.send(data);
   });
 });
