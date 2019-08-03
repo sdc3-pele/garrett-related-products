@@ -3,7 +3,6 @@ const { generateProduct } = require('../seedHelpers.js');
 const { client } = require('./postgresConnection.js');
 
 const seedPostgres = async () => {
-
   const tableQueryString = 'CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, name TEXT NOT NULL, price TEXT, styles JSON, style_thumbnails JSON)';
 
   await client.query('TRUNCATE TABLE products RESTART IDENTITY', (err) => {
