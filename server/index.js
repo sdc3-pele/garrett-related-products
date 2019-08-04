@@ -39,12 +39,12 @@ app.get('/api/product/:pid', (req, res) => {
     }
     const data = Object.assign({}, result.rows[0]);
 
-    data.styles = data.styles.map((url) => {
-      return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/styles/_(${url}).jfif`;
+    data.styles = data.styles.map((idNum) => {
+      return `https://sdc-related-products-styles.s3-us-west-1.amazonaws.com/styles/photo(${idNum}).jpg`;
     });
 
-    data.style_thumbnails = data.styles.map((url) => {
-      return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/style-thumbs/_(${url}).jfif`;
+    data.style_thumbnails = data.style_thumbnails.map((idNum) => {
+      return `https://sdc-related-products-style-thumbnails.s3-us-west-1.amazonaws.com/style_thumbnails/photo(${idNum}).jpg`;
     });
 
     data.styles = JSON.stringify(data.styles);
