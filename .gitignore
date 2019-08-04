@@ -3,3 +3,6 @@ config.js
 node_modules
 server/spec
 .vscode
+newrelic_agent.log
+newrelic.js
+images
