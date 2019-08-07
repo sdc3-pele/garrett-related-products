@@ -19,13 +19,15 @@ const getDescriptors = () => { // grab vocab words from vocab and capitalize the
 const generatePrice = () => `${20 + Math.floor(Math.random() * 200)}.00`; // generates a random price in the range of $20 - $250
 
 const generateStyle = () => {
-  const randomKey = Math.floor(Math.random() * 174); // there are 174 style images in the s3 bucket
-  return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/styles/_(${randomKey}).jfif`;
+  const randomKey = Math.floor(Math.random() * 1000); // there are 174 style images in the s3 bucket
+  return randomKey;
+  // return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/styles/_(${randomKey}).jfif`;
 };
 
 const generateStyleThumbnail = () => {
-  const randomKey = Math.floor(Math.random() * 187); // there are 187 style thumbnail images in the s3 bucket
-  return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/style-thumbs/_(${randomKey}).jfif`;
+  const randomKey = Math.floor(Math.random() * 1000); // there are 187 style thumbnail images in the s3 bucket
+  return randomKey;
+  // return `https://fec-related-products-images.s3.ap-northeast-2.amazonaws.com/style-thumbs/_(${randomKey}).jfif`;
 };
 
 const generateProduct = () => { // puts it all together

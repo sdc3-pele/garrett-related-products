@@ -1,13 +1,23 @@
+const nr = require('newrelic');
 const express = require('express');
+const bodyParser = require('body-parser');
 const db = require('../database/mysql/index.js');
-const postgresDB = require('../database/postgres/index.js');
 const client = require('../database/postgres/postgresConnection.js');
+const {
+  postProduct,
+  getProduct,
+  updateProduct,
+  deleteProduct,
+} = require('../database/postgres/index.js');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extend: true }));
+app.use(bodyParser.json());
 
 app.use('/:pid', express.static(`${__dirname}/../dist`));
 
-app.get('/api/products', (req, res) => { // get all products
+/* NOT IN USE */
+app.get('/api/products', (req, res) => {
   db.getAllProducts((err, result) => {
     if (err) {
       res.status(400).send(err);
@@ -28,53 +38,49 @@ app.get('/api/product/:pid', (req, res) => {
       res.status(500);
     }
     const data = Object.assign({}, result.rows[0]);
+
+    data.styles = data.styles.map((idNum) => {
+      return `https://sdc-related-products-styles.s3-us-west-1.amazonaws.com/styles/photo(${idNum}).jpg`;
+    });
+
+    data.style_thumbnails = data.style_thumbnails.map((idNum) => {
+      return `https://sdc-related-products-style-thumbnails.s3-us-west-1.amazonaws.com/style_thumbnails/photo(${idNum}).jpg`;
+    });
+
     data.styles = JSON.stringify(data.styles);
     data.style_thumbnails = JSON.stringify(data.style_thumbnails);
+
     res.send(data);
   });
-
-  /* MYSQL */
-  // db.getProduct(pid, (err, result) => {
-  //   if (err) {
-  //     // res.status(400).send(err);
-  //   } else {
-  //     console.log('M: RESULT: ', result)
-  //     res.status(200).send(result);
-  //   }
-  // });
 });
 
-// build post route
 app.post('/api/product/', (req, res) => {
-  // take data from req
+  const product = req.body;
+  product.styles = JSON.stringify(product.styles);
+  product.style_thumbnails = JSON.stringify(product.style_thumbnails);
 
-  // save data to DB
-
-  // if success res with 202 & new product from db
-
-  // if error res with 500
+  postProduct(product)
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500));
 });
 
-// build delete route
 app.delete('/api/product/:pid', (req, res) => {
-  // query db for product with id
+  const { pid } = req.params;
 
-  // delete if product exists res 200
-
-  // res with 500 if there is an error
+  deleteProduct(pid)
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(500));
 });
 
-// build put route
 app.put('/api/product/:pid', (req, res) => {
-  // query to db if product(pid) exists
+  const { pid } = req.params;
+  const product = req.body;
+  product.styles = JSON.stringify(product.styles);
+  product.style_thumbnails = JSON.stringify(product.style_thumbnails);
 
-  // take req.body and update it in db
-
-    // es 200 and send back updated product
-
-  // if there is an err
-
-    // res with 500
+  updateProduct(pid, product)
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(500));
 });
 
 app.listen('3003', () => {
